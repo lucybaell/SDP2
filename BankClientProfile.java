@@ -2,7 +2,7 @@ package gradedGroupProject.nonPrincipledDesign.v1;
 
 import java.util.Date;
 
-public  class BankClientProfile {
+abstract public  class BankClientProfile {
 
 	public String name;
 	public String address;

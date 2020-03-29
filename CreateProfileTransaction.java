@@ -21,8 +21,7 @@ public class CreateProfileTransaction {
 			ex.printStackTrace();
 		}
 
-		BankClientProfile bankClientProfile = new BankClientProfile(name, address, birthDate);
-		// bankClient.createProfile( name, address, birthDate );
+		BankClientProfile bankClientProfile = new BankClientProfileConcrete(name, address, birthDate);
 //*************************
 		bankClient.name = name;
 		bankClient.address = address;
