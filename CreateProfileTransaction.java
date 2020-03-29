@@ -23,6 +23,10 @@ public class CreateProfileTransaction {
 
 		BankClientProfile bankClientProfile = new BankClientProfile(name, address, birthDate);
 		// bankClient.createProfile( name, address, birthDate );
+//*************************
+		bankClient.name = name;
+		bankClient.address = address;
+		bankClient.birthDate = birthDate;
 	}
 
 }
