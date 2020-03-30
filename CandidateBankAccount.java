@@ -26,7 +26,7 @@ public class CandidateBankAccount {
 
 			accountType = Read.read("account type (primary, savings)");
 			accountNumber = bankClient.addAccount(accountType);
-			boolean verified = bankClient.askForVerification(bankClient.clientID, accountNumber, adminName); // TODO:
+			boolean verified = askForVerification(bankClient.clientID, accountNumber, adminName); // TODO:
 																												// contact
 																												// bank
 																												// admin
@@ -36,4 +36,12 @@ public class CandidateBankAccount {
 			
 		
 	}
+	
+	public boolean askForVerification(int clientID, int accountNumber, String adminName) {
+
+		// Assume we sent a message to bank admin
+
+		return true;
+	}
+
 }

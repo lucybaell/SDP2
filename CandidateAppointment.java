@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 public class CandidateAppointment {
 
 	public BankEmployee bankEmployee;
+	
 	public CandidateAppointment(BankEmployee bankEmployee) {
 		this.bankEmployee=bankEmployee;
 	}

@@ -37,7 +37,6 @@ public class BankClient extends Person {
 		this.clientID = clientCount.incrementAndGet();
 	}
 
-	// ******************************
 	public void createProfile(String name, String address, Date birthDate) {
 
 		if (name == null || address == null || birthDate == null)
@@ -75,7 +74,7 @@ public class BankClient extends Person {
 			accountNumbers.add(accountCount.incrementAndGet());
 			accountTypes.add(accountType);
 			accountVerified.add(false);
-			accountBalances.add(0.0);
+			accountBalances.add(100.0);
 
 			return accountCount.get();
 		}
@@ -129,6 +128,9 @@ public class BankClient extends Person {
 			System.out.println("accountType: " + accountTypes.get(i) + "\naccountNumber = " + accountNumbers.get(i)
 					+ ", accountVerified = " + accountVerified.get(i) + ", accountBalance = " + accountBalances.get(i)
 					+ "\n");
+		for (int i = 0; appointments != null && i < appointments.size(); ++i)
+			System.out.println("Appointment date: " + appointments.get(i) + "\nBank Employee: "
+					+ bankEmployeesWithAppointments.get(i) + ", Scheduled = " + true);
 	}
 
 	public void toPrintAccount(int accountNumber) {
@@ -138,9 +140,9 @@ public class BankClient extends Person {
 			if (accountNumbers.get(i) == accountNumber) {
 
 				System.out.println("accountType: " + accountTypes.get(i));
-				System.out.print("\naccountNumber = " + accountNumbers.get(i));
+				System.out.print("accountNumber = " + accountNumbers.get(i));
 				System.out.print(", accountVerified = " + accountVerified.get(i));
-				System.out.println(", accountBalance = " + accountBalances.get(i)+ "\n");
+				System.out.println(", accountBalance = " + accountBalances.get(i) + "\n");
 			}
 		}
 	}
@@ -149,10 +151,10 @@ public class BankClient extends Person {
 
 		for (int i = 0; accountNumbers != null && i < accountNumbers.size(); ++i) {
 
-			System.out.println("accountType: " + accountTypes.get(i));
-			System.out.print("\naccountNumber = " + accountNumbers.get(i));
+			System.out.println("\naccountType: " + accountTypes.get(i));
+			System.out.print("accountNumber = " + accountNumbers.get(i));
 			System.out.print(", accountVerified = " + accountVerified.get(i));
-			System.out.print(", accountBalance = " + accountBalances.get(i) + "\n");
+			System.out.print(", accountBalance = " + accountBalances.get(i));
 		}
 	}
 
@@ -194,10 +196,10 @@ public class BankClient extends Person {
 
 			if (accountNumbers.get(to) == toAccountNumber) {
 
-				System.out.println("\tTo accountNumber: " + accountNumbers.get(to));
-				System.out.println("\tTo accountType: " + accountTypes.get(to));
-				System.out.println("\tTo accountVerified: " + accountVerified.get(to));
-				System.out.println("\tTo accountBalance: " + accountBalances.get(to));
+				System.out.println("To accountType: " + accountTypes.get(to));
+				System.out.println("To accountNumber: " + accountNumbers.get(to));
+				System.out.println("To accountVerified: " + accountVerified.get(to));
+				System.out.println("To accountBalance: " + accountBalances.get(to));
 			}
 		}
 

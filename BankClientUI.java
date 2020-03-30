@@ -1,9 +1,7 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class BankClientUI {
@@ -11,8 +9,6 @@ public class BankClientUI {
 	public static void main(String[] args) throws ParseException {
 
 		List<BankClient> bankClients = new ArrayList<>();
-
-		String employeeName = "Y";
 
 		while (true) {
 
@@ -29,12 +25,6 @@ public class BankClientUI {
 			else if (choice.equals("1")) {// register
 
 				RegistrationTransaction registrationTransaction = new RegistrationTransactionImpl();
-				/*
-				 * possible line 37 to line 54
-				 * can be put into registrationTransaction class bankClients.add(bankClient);
-				 * will be only thing that will be tricky, register would have to return a
-				 * BankClient or take the bankClients list as parameter and change it within
-				 */
 				BankClient bankClient = registrationTransaction.register();
 				bankClients.add(bankClient);
 
@@ -42,7 +32,7 @@ public class BankClientUI {
 				createProfileTransaction.createProfile(bankClient);
 
 				while (true) {// while client not adding banks accounts
-					// ********************
+
 					new CandidateBankAccount(bankClient);
 
 					System.out.println("\n0. NO extra account");
@@ -66,70 +56,42 @@ public class BankClientUI {
 				else {
 
 					int pos = bankClientLogin.getPos();// this is t get the bank clients pos in the array
+					// NTS change all references to this back if breaks
+					BankClient bankClient = bankClients.get(pos);
+					// appendix 23 24 not sure why he wants this but i put it in
 					int accountNumber = Integer.parseInt(Read.read("account number"));
-					bankClients.get(pos).toPrintAccount(accountNumber);
+					bankClient.toPrintAccount(accountNumber);
+					while (true) {
+						ListPrint.print(bankClients);
+						System.out.println("\n0. Log Out \n5. Change Bank Client Details \n6. Delete Bank Account "
+								+ "\n7. Money transfer \n8. Book Appoinment");
+						choice = Read.read("choice");
 
-					System.out.println("\n0. Exit");
-					System.out.println("5. Change Bank Client Details");
-					System.out.println("6. Delete Bank Account");
-					System.out.println("7. Money transfer");
-					System.out.println("8. Book Appoinment");
-					choice = Read.read("choice");
-
-					if (choice.equals("5")) {// 5. Change Bank Client Details
-
-						new BankClientChangeDetailsTransaction(bankClients.get(pos));
-
-					}
-
-					else if (choice.equals("6")) {// Delete Bank Account
-
-						new BankClientDeleteBankAccountTransaction(bankClients.get(pos));
-
-						if (bankClients.get(pos).accountNumbers.size() == 0) //if bank client has no accounts they are removed
-							bankClients.remove(pos);
-
-					}
-
-					else if (choice.equals("7")) {// Money transfer
-
-						bankClients.get(pos).printAccounts();
-
-						int fromAccountNumber = Integer.parseInt(Read.read("from account number"));
-						int toAccountNumber = Integer.parseInt(Read.read("to account number"));
-						double amount = Integer.parseInt(Read.read("amount"));
-
-						bankClients.get(pos).transfer(fromAccountNumber, toAccountNumber, amount);
-					}
-
-					else if (choice.equals("8")) {// Book Appoinment
-
-						Date appointmentDate = null;
-						try {
-							appointmentDate = new SimpleDateFormat("dd/MM/yyyy").parse(Read.read("apppoinment date"));
-						} catch (ParseException ex) {
-							ex.printStackTrace();
+						if (choice.equals("0")) {// Log Out
+							break;
+						}
+						
+						if (choice.equals("5")) {// 5. Change Bank Client Details
+							new BankClientChangeDetailsTransaction(bankClient);
 						}
 
-						boolean scheduled = bankClients.get(pos).askForSchedulingAppointment(
-								bankClients.get(pos).clientID, appointmentDate, employeeName);
+						else if (choice.equals("6")) {// Delete Bank Account
+							new BankClientDeleteBankAccountTransaction(bankClient);
+							if (bankClient.accountNumbers.size() == 0) // if bank client has no accounts they are
+																		// removed
+								bankClients.remove(pos);
+						}
 
-						if (scheduled)
-							bankClients.get(pos).bookAppointment(appointmentDate, employeeName);
+						else if (choice.equals("7")) {// Money transfer
+							new BankClientMoneyTransferTransaction(bankClients.get(pos));
+						}
 
-						else
-							System.err.println("The appointment has not been booked");
+						else if (choice.equals("8")) {// Book Appointment
+							new BankClientBookAppointmentTransaction(bankClient);
+						}
 					}
 				}
 			}
 		}
-	}
-
-	public static void print(List<BankClient> bankClients) {
-
-		System.out.println("Bank Clients:\n");
-
-		for (int i = 0; bankClients != null && i < bankClients.size(); ++i)
-			bankClients.get(i).toPrint();
 	}
 }
