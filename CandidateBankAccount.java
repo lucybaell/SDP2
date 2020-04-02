@@ -1,7 +1,7 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 /**
  * 
- * @author danielmason
+ * 
  * this was in his feedback as a recommended class
  * This class is for Candididate bank accounts, it takes a bank client as a parameter
  * the user is asked for the account type

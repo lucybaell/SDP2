@@ -1,7 +1,6 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 /**
  * this class allows the transfer of money between two accounts on the system
- * @author danielmason
  *
  */
 public class BankClientMoneyTransferTransaction {

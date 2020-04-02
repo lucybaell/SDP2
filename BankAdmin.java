@@ -1,5 +1,6 @@
-package groupProject;
+package gradedGroupProject.nonPrincipledDesign.v1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankAdmin extends Person {
@@ -9,8 +10,9 @@ public class BankAdmin extends Person {
 	public List<BankClient> bankClientsToVerify;
 	public List<Integer> accountNumbersToVerify;
 
-	public static void print(List<BankClient> bankClients) {
-		for (int i = 0; bankClients != null && i < bankClients.size(); ++i)
-			bankClients.get(i).toPrint();
+	public BankAdmin(){
+
+		this.bankClientsToVerify = new ArrayList<BankClient>();
+		this.accountNumbersToVerify = new ArrayList<Integer>();
 	}
 }

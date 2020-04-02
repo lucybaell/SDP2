@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class BankEmployee {
+public class BankEmployee extends Person {
 
 	public String name;
 	public List<BankClient> bankClientsWithAppointments;

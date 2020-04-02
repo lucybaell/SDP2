@@ -37,18 +37,6 @@ public class BankClient extends Person {
 		this.clientID = clientCount.incrementAndGet();
 	}
 
-	public void createProfile(String name, String address, Date birthDate) {
-
-		if (name == null || address == null || birthDate == null)
-			System.err.println("Error create profile transaction");
-
-		else {
-
-			this.name = name;
-			this.address = address;
-			this.birthDate = birthDate;
-		}
-	}
 
 	public int addAccount(String accountType) {
 
@@ -80,12 +68,7 @@ public class BankClient extends Person {
 		}
 	}
 
-	public boolean askForVerification(int clientID, int accountNumber, String adminName) {
-
-		// Assume we sent a message to bank admin
-
-		return true;
-	}
+	
 
 	public void verify(int accountNumber, boolean verified) {
 
@@ -94,20 +77,6 @@ public class BankClient extends Person {
 				accountVerified.set(i, verified);
 	}
 
-	public void changeClientDetails(String name, String address, Date birthDate, String username, String password) {
-
-		if (name == null || address == null || birthDate == null || username == null || password == null)
-			System.err.println("Error change details transaction");
-
-		else {
-
-			this.name = name;
-			this.address = address;
-			this.birthDate = birthDate;
-			this.username = username;
-			this.password = password;
-		}
-	}
 
 	public void toPrint() {
 
@@ -157,100 +126,6 @@ public class BankClient extends Person {
 			System.out.print(", accountBalance = " + accountBalances.get(i));
 		}
 	}
-
-	public void deleteAccount(int accountNumber) {
-
-		int pos = 0;
-
-		for (pos = 0; pos < accountNumbers.size(); ++pos)
-			if (accountNumbers.get(pos) == accountNumber)
-				break;
-
-		if (pos >= 0 && pos < accountNumbers.size()) {
-
-			accountNumbers.remove(pos);
-			accountTypes.remove(pos);
-			accountVerified.remove(pos);
-			accountBalances.remove(pos);
-		}
-	}
-
-	public void transfer(int fromAccountNumber, int toAccountNumber, double amount) {
-
-		int from = 0;
-
-		for (from = 0; from < accountNumbers.size(); ++from) {
-
-			if (accountNumbers.get(from) == fromAccountNumber) {
-
-				System.out.println("\tFrom accountNumber: " + accountNumbers.get(from));
-				System.out.println("\ttFrom accountType: " + accountTypes.get(from));
-				System.out.println("\ttFrom accountVerified: " + accountVerified.get(from));
-				System.out.println("\ttFrom accountBalance: " + accountBalances.get(from));
-			}
-		}
-
-		int to = 0;
-
-		for (to = 0; to < accountNumbers.size(); ++to) {
-
-			if (accountNumbers.get(to) == toAccountNumber) {
-
-				System.out.println("To accountType: " + accountTypes.get(to));
-				System.out.println("To accountNumber: " + accountNumbers.get(to));
-				System.out.println("To accountVerified: " + accountVerified.get(to));
-				System.out.println("To accountBalance: " + accountBalances.get(to));
-			}
-		}
-
-		if (from >= 0 && from < accountNumbers.size() && to >= 0 && to < accountNumbers.size()
-				&& accountBalances.get(from) >= amount) {
-
-			accountBalances.set(from, accountBalances.get(from) - amount);
-
-			accountBalances.set(to, accountBalances.get(to) + amount);
-
-			System.out.println("Transfer is completed");
-		}
-
-		else
-			System.out.println("Transfer cannot be made");
-	}
-
-	public boolean askForSchedulingAppointment(int clientID, Date date, String employeeName) {
-
-		if (date == null || employeeName == null) {
-
-			System.err.println("Error schedule appointment transaction");
-
-			return false;
-		}
-
-		else {
-
-			// Assume we sent a message to bank employee
-
-			return true;
-		}
-	}
-
-	public void bookAppointment(Date date, String employeeName) {
-
-		if (date == null || employeeName == null)
-			System.err.println("Error book appointment transaction");
-
-		else {
-
-			if (appointments == null)
-				appointments = new ArrayList<Date>();
-
-			appointments.add(date);
-
-			if (bankEmployeesWithAppointments == null)
-				bankEmployeesWithAppointments = new ArrayList<String>();
-
-			bankEmployeesWithAppointments.add(employeeName);
-		}
-	}
+	
 
 }

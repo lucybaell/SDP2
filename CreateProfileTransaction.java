@@ -23,9 +23,9 @@ public class CreateProfileTransaction {
 
 		BankClientProfile bankClientProfile = new BankClientProfileConcrete(name, address, birthDate);
 		
-		bankClient.name = name;
-		bankClient.address = address;
-		bankClient.birthDate = birthDate;
+		bankClient.name = bankClientProfile.name;
+		bankClient.address = bankClientProfile.address;
+		bankClient.birthDate = bankClientProfile.birthDate;
 	}
 
 }
