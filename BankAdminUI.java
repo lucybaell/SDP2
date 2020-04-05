@@ -20,7 +20,7 @@ public class BankAdminUI {
 
 		ListPrint.print(bankAdmin.bankClientsToVerify);
 
-		new BankClientVerificationTransaction(bankAdmin);
+		new BankAdminVerificationTransaction(bankAdmin);
 
 	}
 

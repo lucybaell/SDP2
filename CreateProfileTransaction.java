@@ -6,10 +6,6 @@ import java.util.Date;
 
 public class CreateProfileTransaction {
 
-	public String name;
-	public String address;
-	public Date birthDate;
-
 	public void createProfile(BankClient bankClient) {
 		String name = Read.read("name");
 		String address = Read.read("address");
@@ -23,9 +19,13 @@ public class CreateProfileTransaction {
 
 		BankClientProfile bankClientProfile = new BankClientProfileConcrete(name, address, birthDate);
 		
+		/*
 		bankClient.name = bankClientProfile.name;
 		bankClient.address = bankClientProfile.address;
 		bankClient.birthDate = bankClientProfile.birthDate;
+		*/
+		
+		bankClient.bankClientProfile = bankClientProfile;
 	}
 
 }

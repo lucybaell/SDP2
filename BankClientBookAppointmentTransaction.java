@@ -55,15 +55,12 @@ public class BankClientBookAppointmentTransaction {
 
 		else {
 
+			Appointment appointment = new Appointment(date,employeeName);
+			
 			if (bankClient.appointments == null)
-				bankClient.appointments = new ArrayList<Date>();
+				bankClient.appointments = new ArrayList<Appointment>();
 
-			bankClient.appointments.add(date);
-
-			if (bankClient.bankEmployeesWithAppointments == null)
-				bankClient.bankEmployeesWithAppointments = new ArrayList<String>();
-
-			bankClient.bankEmployeesWithAppointments.add(employeeName);
+			bankClient.appointments.add(appointment);
 			System.out.println("Appointment has been booked.");
 		}
 	}

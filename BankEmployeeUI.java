@@ -8,13 +8,13 @@ public class BankEmployeeUI {
 
 		// hard-coded notifications for appointments with bank client to be scheduled
 		BankClient bankClient1 = new BankClient("u1", "p1");
-		bankClient1.name = "Alpha";
+		bankClient1.bankClientProfile.name = "Alpha";
 		BankClient bankClient2 = new BankClient("u2", "p2");
-		bankClient2.name = "Bravo";
+		bankClient2.bankClientProfile.name = "Bravo";
 		BankClient bankClient3 = new BankClient("u3", "p4");
-		bankClient3.name = "Charlie";
+		bankClient3.bankClientProfile.name = "Charlie";
 		BankClient bankClient4 = new BankClient("u4", "p4");
-		bankClient4.name = "Delta";
+		bankClient4.bankClientProfile.name = "Delta";
 
 		
 		BankEmployee bankEmployee = new BankEmployee("Peggy");

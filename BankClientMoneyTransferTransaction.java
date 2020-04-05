@@ -27,39 +27,38 @@ public class BankClientMoneyTransferTransaction {
 
 		int from = 0;//money coming from this account
 
-		for (from = 0; from < bankClient.accountNumbers.size(); ++from) {
+		for (from = 0; from < bankClient.bankAccounts.size(); ++from) {
 
-			if (bankClient.accountNumbers.get(from) == fromAccountNumber) {
+			if (bankClient.bankAccounts.get(from).accountNumber == fromAccountNumber) {
 
-				System.out.println("From accountNumber: " + bankClient.accountNumbers.get(from));
-				System.out.println("From accountType: " + bankClient.accountTypes.get(from));
-				System.out.println("From accountVerified: " + bankClient.accountVerified.get(from));
-				System.out.println("From accountBalance: " + bankClient.accountBalances.get(from));
+				System.out.println("From accountNumber: " + bankClient.bankAccounts.get(from).accountNumber);
+				System.out.println("From accountType: " + bankClient.bankAccounts.get(from).accountType);
+				System.out.println("From accountVerified: " + bankClient.bankAccounts.get(from).accountVerified);
+				System.out.println("From accountBalance: " + bankClient.bankAccounts.get(from).accountBalance);
 				break;
 			}
 		}
 
 		int to = 0;//money going to this account
 
-		for (to = 0; to < bankClient.accountNumbers.size(); ++to) {
+		for (to = 0; to < bankClient.bankAccounts.size(); ++to) {
 
-			if (bankClient.accountNumbers.get(to) == toAccountNumber) {
+			if (bankClient.bankAccounts.get(to).accountNumber == toAccountNumber) {
 
-				System.out.println("To accountType: " + bankClient.accountTypes.get(to));
-				System.out.println("To accountNumber: " + bankClient.accountNumbers.get(to));
-				System.out.println("To accountVerified: " + bankClient.accountVerified.get(to));
-				System.out.println("To accountBalance: " + bankClient.accountBalances.get(to));
+				System.out.println("To accountType: " + bankClient.bankAccounts.get(to).accountType);
+				System.out.println("To accountNumber: " + bankClient.bankAccounts.get(to).accountNumber);
+				System.out.println("To accountVerified: " + bankClient.bankAccounts.get(to).accountVerified);
+				System.out.println("To accountBalance: " + bankClient.bankAccounts.get(to).accountBalance);
 				break;
 			}
 		}
 
 		//if the to and from are valid accounts and the source has the budget
-		if (from >= 0 && from < bankClient.accountNumbers.size() && to >= 0 && to < bankClient.accountNumbers.size()
-				&& bankClient.accountBalances.get(from) >= amount) {
+		if (from >= 0 && from < bankClient.bankAccounts.size() && to >= 0 && to < bankClient.bankAccounts.size()
+				&& bankClient.bankAccounts.get(from).accountBalance >= amount) {
 
-			bankClient.accountBalances.set(from, bankClient.accountBalances.get(from) - amount);
-
-			bankClient.accountBalances.set(to, bankClient.accountBalances.get(to) + amount);
+			bankClient.bankAccounts.get(from).accountBalance-=amount;
+			bankClient.bankAccounts.get(to).accountBalance+=amount;
 
 			System.out.println("\nTransfer is completed\n");
 		}

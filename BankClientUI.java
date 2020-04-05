@@ -28,9 +28,6 @@ public class BankClientUI {
 				BankClient bankClient = registrationTransaction.register();
 				bankClients.add(bankClient);
 
-				CreateProfileTransaction createProfileTransaction = new CreateProfileTransaction();
-				createProfileTransaction.createProfile(bankClient);
-
 				while (true) {// while client not adding banks accounts
 
 					new CandidateBankAccount(bankClient);
@@ -56,7 +53,7 @@ public class BankClientUI {
 				else {
 
 					int pos = bankClientLogin.getPos();// this is t get the bank clients pos in the array
-					// NTS change all references to this back if breaks
+					
 					BankClient bankClient = bankClients.get(pos);
 					// appendix 23 24 not sure why he wants this but i put it in
 					int accountNumber = Integer.parseInt(Read.read("account number"));
@@ -77,7 +74,7 @@ public class BankClientUI {
 
 						else if (choice.equals("6")) {// Delete Bank Account
 							new BankClientDeleteBankAccountTransaction(bankClient);
-							if (bankClient.accountNumbers.size() == 0) // if bank client has no accounts they are
+							if (bankClient.bankAccounts.size() == 0) // if bank client has no accounts they are
 																		// removed
 								bankClients.remove(pos);
 						}

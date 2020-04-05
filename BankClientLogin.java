@@ -28,7 +28,8 @@ public class BankClientLogin {
 
 		for (pos = 0; pos < bankClients.size(); ++pos)
 
-			if (bankClients.get(pos).username.equals(username) && bankClients.get(pos).password.equals(password))
+			if (bankClients.get(pos).bankClientCridentials.username.equals(username)
+					&& bankClients.get(pos).bankClientCridentials.password.equals(password))
 				break;
 
 		if (pos < 0 || pos >= bankClients.size()) {
@@ -48,12 +49,10 @@ public class BankClientLogin {
 	}
 
 	public int getPos() {
-		// TODO Auto-generated method stub
 		return this.pos;
 	}
 
 	public boolean successfulLogin() {
-		// TODO Auto-generated method stub
 		return this.successfulLogin;
 	}
 

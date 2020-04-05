@@ -1,7 +1,6 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -11,25 +10,18 @@ public class BankClient extends Person {
 	public static final AtomicInteger accountCount = new AtomicInteger(0);
 
 	public int clientID;
-	public String name;
-	public String address;
-	public Date birthDate;
+	public BankClientProfile bankClientProfile;
+	public BankClientCridentials bankClientCridentials;
+	public List<BankAccount> bankAccounts;
+	public List<Appointment> appointments;
 
-	public String username;
-	public String password;
-
-	public List<Integer> accountNumbers;
-	public List<String> accountTypes;
-	public List<Boolean> accountVerified;
-	public List<Double> accountBalances;
-
-	public List<Date> appointments;
-	public List<String> bankEmployeesWithAppointments;
+	public BankClient() {
+		this.clientID = clientCount.incrementAndGet();
+	}
 
 	public BankClient(String username, String password) {
 
-		this.username = username;
-		this.password = password;
+		this.bankClientCridentials = new BankClientCridentials(username, password);
 
 		if (username == null || username == null)
 			System.err.println("Error register transaction");
@@ -37,8 +29,20 @@ public class BankClient extends Person {
 		this.clientID = clientCount.incrementAndGet();
 	}
 
-
 	public int addAccount(String accountType) {
+
+		if (bankAccounts == null) {
+			bankAccounts = new ArrayList<BankAccount>();
+		}
+		if (accountType.equals("primary")) {
+			BankAccount newBankAccount = new BankAccountPrimary();
+			bankAccounts.add(newBankAccount);
+		}
+
+		if (accountType.equals("savings")) {
+			BankAccount newBankAccount = new BankAccountSavings();
+			bankAccounts.add(newBankAccount);
+		}
 
 		if (accountType == null
 				|| (accountType != null && !accountType.equals("primary") && !accountType.equals("savings"))) {
@@ -50,82 +54,64 @@ public class BankClient extends Person {
 
 		else {
 
-			if (accountNumbers == null)
-				accountNumbers = new ArrayList<Integer>();
-			if (accountTypes == null)
-				accountTypes = new ArrayList<String>();
-			if (accountVerified == null)
-				accountVerified = new ArrayList<Boolean>();
-			if (accountBalances == null)
-				accountBalances = new ArrayList<Double>();
-
-			accountNumbers.add(accountCount.incrementAndGet());
-			accountTypes.add(accountType);
-			accountVerified.add(false);
-			accountBalances.add(100.0);
-
-			return accountCount.get();
+			return accountCount.incrementAndGet();
 		}
 	}
 
-	
-
 	public void verify(int accountNumber, boolean verified) {
 
-		for (int i = 0; i < accountNumbers.size(); ++i)
-			if (accountNumbers.get(i) == accountNumber)
-				accountVerified.set(i, verified);
+		for (int i = 0; i < bankAccounts.size(); ++i)
+			if (bankAccounts.get(i).accountNumber == accountNumber)
+				bankAccounts.get(i).accountVerified = verified;
 	}
-
 
 	public void toPrint() {
 
 		System.out.println("clientID = " + clientID);
 
-		if (username != null)
-			System.out.println("username = " + username);
-		if (password != null)
-			System.out.println("password = " + password);
-		if (name != null)
-			System.out.println("name = " + name);
-		if (address != null)
-			System.out.println("address = " + address);
-		if (birthDate != null)
-			System.out.println("birthDate = " + birthDate);
-		// ***************************
-		for (int i = 0; accountNumbers != null && i < accountNumbers.size(); ++i)
-			System.out.println("accountType: " + accountTypes.get(i) + "\naccountNumber = " + accountNumbers.get(i)
-					+ ", accountVerified = " + accountVerified.get(i) + ", accountBalance = " + accountBalances.get(i)
-					+ "\n");
+		if (bankClientCridentials.username != null)
+			System.out.println("username = " + bankClientCridentials.username);
+		if (bankClientCridentials.password != null)
+			System.out.println("password = " + bankClientCridentials.password);
+		if (bankClientProfile.name != null)
+			System.out.println("name = " + bankClientProfile.name);
+		if (bankClientProfile.address != null)
+			System.out.println("address = " + bankClientProfile.address);
+		if (bankClientProfile.birthDate != null)
+			System.out.println("birthDate = " + bankClientProfile.birthDate);
+
+		for (int i = 0; bankAccounts != null && i < bankAccounts.size(); ++i)
+			System.out.println("accountType: " + bankAccounts.get(i).accountType + "\naccountNumber = "
+					+ bankAccounts.get(i).accountNumber + ", accountVerified = " + bankAccounts.get(i).accountVerified
+					+ ", accountBalance = " + bankAccounts.get(i).accountBalance + "\n");
 		for (int i = 0; appointments != null && i < appointments.size(); ++i)
-			System.out.println("Appointment date: " + appointments.get(i) + "\nBank Employee: "
-					+ bankEmployeesWithAppointments.get(i) + ", Scheduled = " + true);
+			System.out.println("Appointment date: " + appointments.get(i).date + "\nBank Employee: "
+					+ appointments.get(i).bankEmployeesWithAppointment + ", Scheduled = " + true);
 	}
 
 	public void toPrintAccount(int accountNumber) {
 
-		for (int i = 0; accountNumbers != null && i < accountNumbers.size(); ++i) {
+		for (int i = 0; bankAccounts != null && i < bankAccounts.size(); ++i) {
 
-			if (accountNumbers.get(i) == accountNumber) {
+			if (bankAccounts.get(i).accountNumber == accountNumber) {
 
-				System.out.println("accountType: " + accountTypes.get(i));
-				System.out.print("accountNumber = " + accountNumbers.get(i));
-				System.out.print(", accountVerified = " + accountVerified.get(i));
-				System.out.println(", accountBalance = " + accountBalances.get(i) + "\n");
+				System.out.println("accountType: " + bankAccounts.get(i).accountType);
+				System.out.print("accountNumber = " + bankAccounts.get(i).accountNumber);
+				System.out.print(", accountVerified = " + bankAccounts.get(i).accountVerified);
+				System.out.println(", accountBalance = " + bankAccounts.get(i).accountBalance + "\n");
 			}
 		}
 	}
 
 	public void printAccounts() {
 
-		for (int i = 0; accountNumbers != null && i < accountNumbers.size(); ++i) {
+		for (int i = 0; bankAccounts != null && i < bankAccounts.size(); ++i) {
 
-			System.out.println("\naccountType: " + accountTypes.get(i));
-			System.out.print("accountNumber = " + accountNumbers.get(i));
-			System.out.print(", accountVerified = " + accountVerified.get(i));
-			System.out.print(", accountBalance = " + accountBalances.get(i));
+			System.out.println("\naccountType: " + bankAccounts.get(i).accountType);
+			System.out.print("accountNumber = " + bankAccounts.get(i).accountNumber);
+			System.out.print(", accountVerified = " + bankAccounts.get(i).accountVerified);
+			System.out.print(", accountBalance = " + bankAccounts.get(i).accountBalance);
 		}
 	}
-	
 
 }

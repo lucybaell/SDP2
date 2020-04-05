@@ -13,7 +13,7 @@ public class BankEmployeeVerifyAppointment {
 			Date date = bankEmployee.appointmentDates.get(i);
 			this.bankClient = bankEmployee.bankClientsWithAppointments.get(i);
 
-			System.out.println("\nCandidate date: " + date + " with Client: " + bankClient.name);
+			System.out.println("\nCandidate date: " + date + " with Client: " + bankClient.bankClientProfile.name);
 
 			System.out.println("1. Book it");
 			System.out.println("2. Do not book it");
@@ -42,15 +42,13 @@ public class BankEmployeeVerifyAppointment {
 
 		else {
 
+			Appointment appointment = new Appointment(date,employeeName);
+			
 			if (bankClient.appointments == null)
-				bankClient.appointments = new ArrayList<Date>();
+				bankClient.appointments = new ArrayList<Appointment>();
 
-			bankClient.appointments.add(date);
-
-			if (bankClient.bankEmployeesWithAppointments == null)
-				bankClient.bankEmployeesWithAppointments = new ArrayList<String>();
-
-			bankClient.bankEmployeesWithAppointments.add(employeeName);
+			bankClient.appointments.add(appointment);
+			System.out.println("Appointment has been booked.");
 		}
 	}
 

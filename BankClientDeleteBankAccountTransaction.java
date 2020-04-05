@@ -20,17 +20,14 @@ public class BankClientDeleteBankAccountTransaction {
 
 		int pos = 0;
 
-		for (pos = 0; pos < bankClient.accountNumbers.size(); ++pos)
-			if (bankClient.accountNumbers.get(pos) == accountNumber)
+		for (pos = 0; pos < bankClient.bankAccounts.size(); ++pos)
+			if (bankClient.bankAccounts.get(pos).accountNumber == accountNumber)
 				break;
 
-		if (pos >= 0 && pos < bankClient.accountNumbers.size()) {
+		if (pos >= 0 && pos < bankClient.bankAccounts.size()) {
 
-			bankClient.accountNumbers.remove(pos);
-			bankClient.accountTypes.remove(pos);
-			bankClient.accountVerified.remove(pos);
-			bankClient.accountBalances.remove(pos);
-
+			bankClient.bankAccounts.remove(pos);
+			
 		}
 	}
 }
