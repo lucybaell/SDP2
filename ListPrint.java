@@ -17,8 +17,6 @@ public class ListPrint {
 				&& i < bankEmployee.bankClientsWithAppointments.size(); ++i) {
 			System.out.println("\nAppointment Date: " + bankEmployee.appointmentDates.get(i));
 			bankEmployee.bankClientsWithAppointments.get(i).toPrint();
-			System.out.println("Username: " + bankEmployee.bankClientsWithAppointments.get(i).bankClientCridentials.username);
-			System.out.println("Password: " + bankEmployee.bankClientsWithAppointments.get(i).bankClientCridentials.password);
 		}
 	}
 

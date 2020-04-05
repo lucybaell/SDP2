@@ -2,7 +2,7 @@ package gradedGroupProject.nonPrincipledDesign.v1;
 
 import java.util.Date;
 
-abstract public  class BankClientProfile {
+abstract public class BankClientProfile {
 
 	public String name;
 	public String address;
@@ -10,14 +10,19 @@ abstract public  class BankClientProfile {
 
 	public BankClientProfile(String name, String address, Date birthDate) {
 
-		if (name == null || address == null || birthDate == null)
-			System.err.println("Error create profile transaction");
-
-		else {
-
+		if (name == null )
+			System.err.println("Error create profile transaction - name");
+		else
 			this.name = name;
+		if (address == null)
+			System.err.println("Error create profile transaction - address");
+		else
 			this.address = address;
+		if (birthDate == null)
+			System.err.println("Error create profile transaction - birthdate");
+		else {
 			this.birthDate = birthDate;
+
 		}
 	}
 

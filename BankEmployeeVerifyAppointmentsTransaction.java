@@ -12,15 +12,13 @@ public class BankEmployeeVerifyAppointmentsTransaction {
 
 	public BankEmployeeVerifyAppointmentsTransaction(BankEmployee bankEmployee) {
 		this.bankEmployee = bankEmployee;
-		this.bankClientsWithAppointments=bankEmployee.bankClientsWithAppointments;
-		this.appointmentDates=bankEmployee.appointmentDates;
 		handleAppointments();
 		
 	}
 
 	public void handleAppointments() {
 		
-		ListPrint.print(bankEmployee, bankClientsWithAppointments);
+		ListPrint.print(bankEmployee, bankEmployee.bankClientsWithAppointments);
 		BankEmployeeVerifyAppointment verifyAppointments = new BankEmployeeVerifyAppointment();
 		verifyAppointments.verifyAppointments(bankEmployee);
 		

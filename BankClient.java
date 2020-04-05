@@ -7,7 +7,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class BankClient extends Person {
 
 	public static final AtomicInteger clientCount = new AtomicInteger(0);
-	public static final AtomicInteger accountCount = new AtomicInteger(0);
 
 	public int clientID;
 	public BankClientProfile bankClientProfile;
@@ -15,10 +14,20 @@ public class BankClient extends Person {
 	public List<BankAccount> bankAccounts;
 	public List<Appointment> appointments;
 
+	/**
+	 * a constructor for BankClient
+	 * 
+	 */
 	public BankClient() {
 		this.clientID = clientCount.incrementAndGet();
 	}
 
+	/**
+	 * a constructor for BankClient
+	 * 
+	 * @param username
+	 * @param password
+	 */
 	public BankClient(String username, String password) {
 
 		this.bankClientCridentials = new BankClientCridentials(username, password);
@@ -29,42 +38,7 @@ public class BankClient extends Person {
 		this.clientID = clientCount.incrementAndGet();
 	}
 
-	public int addAccount(String accountType) {
-
-		if (bankAccounts == null) {
-			bankAccounts = new ArrayList<BankAccount>();
-		}
-		if (accountType.equals("primary")) {
-			BankAccount newBankAccount = new BankAccountPrimary();
-			bankAccounts.add(newBankAccount);
-		}
-
-		if (accountType.equals("savings")) {
-			BankAccount newBankAccount = new BankAccountSavings();
-			bankAccounts.add(newBankAccount);
-		}
-
-		if (accountType == null
-				|| (accountType != null && !accountType.equals("primary") && !accountType.equals("savings"))) {
-
-			System.err.println("Error create account transaction");
-
-			return -1;
-		}
-
-		else {
-
-			return accountCount.incrementAndGet();
-		}
-	}
-
-	public void verify(int accountNumber, boolean verified) {
-
-		for (int i = 0; i < bankAccounts.size(); ++i)
-			if (bankAccounts.get(i).accountNumber == accountNumber)
-				bankAccounts.get(i).accountVerified = verified;
-	}
-
+	
 	public void toPrint() {
 
 		System.out.println("clientID = " + clientID);
@@ -73,13 +47,14 @@ public class BankClient extends Person {
 			System.out.println("username = " + bankClientCridentials.username);
 		if (bankClientCridentials.password != null)
 			System.out.println("password = " + bankClientCridentials.password);
+		if (bankClientProfile!=null) {
 		if (bankClientProfile.name != null)
 			System.out.println("name = " + bankClientProfile.name);
 		if (bankClientProfile.address != null)
 			System.out.println("address = " + bankClientProfile.address);
 		if (bankClientProfile.birthDate != null)
 			System.out.println("birthDate = " + bankClientProfile.birthDate);
-
+		}
 		for (int i = 0; bankAccounts != null && i < bankAccounts.size(); ++i)
 			System.out.println("accountType: " + bankAccounts.get(i).accountType + "\naccountNumber = "
 					+ bankAccounts.get(i).accountNumber + ", accountVerified = " + bankAccounts.get(i).accountVerified
@@ -111,6 +86,37 @@ public class BankClient extends Person {
 			System.out.print("accountNumber = " + bankAccounts.get(i).accountNumber);
 			System.out.print(", accountVerified = " + bankAccounts.get(i).accountVerified);
 			System.out.print(", accountBalance = " + bankAccounts.get(i).accountBalance);
+		}
+	}
+	
+	public int addAccount(String accountType) {
+
+		if (bankAccounts == null) {
+			bankAccounts = new ArrayList<BankAccount>();
+		}
+		if (accountType.equals("primary")) {
+			BankAccount newBankAccount = new BankAccountPrimary();
+			bankAccounts.add(newBankAccount);
+			return newBankAccount.accountNumber;
+		}
+
+		if (accountType.equals("savings")) {
+			BankAccount newBankAccount = new BankAccountSavings();
+			bankAccounts.add(newBankAccount);
+			return newBankAccount.accountNumber;
+		}
+
+		if (accountType == null
+				|| (accountType != null && !accountType.equals("primary") && !accountType.equals("savings"))) {
+
+			System.err.println("Error create account transaction");
+
+			return -1;
+		}
+
+		else {
+
+			return -1;
 		}
 	}
 

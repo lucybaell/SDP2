@@ -1,5 +1,6 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 
+
 import java.text.ParseException;
 
 public class BankEmployeeUI {
@@ -8,13 +9,13 @@ public class BankEmployeeUI {
 
 		// hard-coded notifications for appointments with bank client to be scheduled
 		BankClient bankClient1 = new BankClient("u1", "p1");
-		bankClient1.bankClientProfile.name = "Alpha";
+		bankClient1.bankClientProfile = new BankClientProfileConcrete("A", null, null) ;
 		BankClient bankClient2 = new BankClient("u2", "p2");
-		bankClient2.bankClientProfile.name = "Bravo";
+		bankClient2.bankClientProfile = new BankClientProfileConcrete("B", null, null) ;
 		BankClient bankClient3 = new BankClient("u3", "p4");
-		bankClient3.bankClientProfile.name = "Charlie";
+		bankClient3.bankClientProfile = new BankClientProfileConcrete("C", null, null) ;
 		BankClient bankClient4 = new BankClient("u4", "p4");
-		bankClient4.bankClientProfile.name = "Delta";
+		bankClient4.bankClientProfile = new BankClientProfileConcrete("D", null, null) ;
 
 		
 		BankEmployee bankEmployee = new BankEmployee("Peggy");

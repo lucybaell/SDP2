@@ -12,7 +12,7 @@ import java.util.List;
 public class BankClientLogin {
 
 	public boolean successfulLogin = false;
-	public int pos = 0;
+	public int index = 0;
 	List<BankClient> bankClients;
 
 	public BankClientLogin(List<BankClient> bankClients) {
@@ -26,12 +26,12 @@ public class BankClientLogin {
 
 		int pos = 0;
 
-		for (pos = 0; pos < bankClients.size(); ++pos)
-
+		for (pos = 0; pos < bankClients.size(); ++pos) {
 			if (bankClients.get(pos).bankClientCridentials.username.equals(username)
 					&& bankClients.get(pos).bankClientCridentials.password.equals(password))
 				break;
-
+		}
+		this.index=pos;
 		if (pos < 0 || pos >= bankClients.size()) {
 
 			System.out.println("Bank client credentials were not found.");
@@ -48,8 +48,8 @@ public class BankClientLogin {
 
 	}
 
-	public int getPos() {
-		return this.pos;
+	public int getIndex() {
+		return this.index;
 	}
 
 	public boolean successfulLogin() {

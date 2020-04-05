@@ -24,8 +24,8 @@ public class BankClientDictionarySingleton {
 	private static BankClientDictionarySingleton singletonInstance;
 
 	/**
-	 * Applies the singleton rule by only calling the private constructor if it has not been
-	 * done before by initialising the instance variable
+	 * Applies the singleton rule by only calling the private constructor if it has
+	 * not been done before by initialising the instance variable
 	 * 
 	 */
 	private BankClientDictionarySingleton() {
@@ -40,10 +40,10 @@ public class BankClientDictionarySingleton {
 	}
 
 	/**
-	 *  
+	 * 
 	 * @return - ArrayList of BankClients
 	 */
-	public ArrayList<BankClient> getClients() {
+	public ArrayList<BankClient> getBankClients() {
 		return this.bankClients;
 	}
 
@@ -52,10 +52,10 @@ public class BankClientDictionarySingleton {
 	 * 
 	 * @param client
 	 */
-	public void addBankClient(BankClient client) {
-		if (client != null) {
-			if (!bankClients.contains(client)) {
-				bankClients.add(client);
+	public void addBankClient(BankClient bankClient) {
+		if (bankClient != null) {
+			if (!bankClients.contains(bankClient)) {
+				bankClients.add(bankClient);
 			}
 		}
 	}
@@ -66,12 +66,17 @@ public class BankClientDictionarySingleton {
 	 * @return
 	 */
 	public void printBankClients() {
-		
+
 		for (BankClient bankClient : bankClients) {
 			if (bankClient != null) {
 				bankClient.toPrint();
 			}
 		}
+	}
+
+	public void printBankClient(int index) {
+
+		getBankClient(index).toPrint();
 	}
 
 	/**
@@ -104,11 +109,12 @@ public class BankClientDictionarySingleton {
 
 	/**
 	 * returns a specified bank client
+	 * 
 	 * @param index
 	 * @return
 	 */
 	public BankClient getBankClient(int index) {
-		if (index > 0 && index <= bankClients.size()) {
+		if (index >= 0 && index < bankClients.size()) {
 			return bankClients.get(index);
 		}
 		return null;
