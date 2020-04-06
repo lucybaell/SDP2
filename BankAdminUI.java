@@ -1,6 +1,9 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 
-
+/**
+ * UI for BankAdmin, handles accounts waiting for verification
+ *
+ */
 public class BankAdminUI {
 
 	public static void main(String[] args) {
@@ -18,9 +21,9 @@ public class BankAdminUI {
 		bankAdmin.bankClientsToVerify.add(bankClient2);
 		bankAdmin.accountNumbersToVerify.add(accountNumber2);
 
-		ListPrint.print(bankAdmin.bankClientsToVerify);
+		ListPrint.print(bankAdmin.bankClientsToVerify);//prints all the accounts for verification
 
-		new BankAdminVerificationTransaction(bankAdmin);
+		new BankAdminVerificationTransaction(bankAdmin);//calls bank admins tasks, asking to verify or not to verify
 
 	}
 

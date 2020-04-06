@@ -1,16 +1,20 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 /**
- * this class allows the transfer of money between two accounts on the system
+ * this class allows the transfer of money between two of a BankClients accounts on the system
  *
  */
 public class BankClientMoneyTransferTransaction {
 
-	
+	//information required for money transfer
 	private int toAccountNumber;
 	private int fromAccountNumber;
-	private int amount;
+	private double amount;
 	private BankClient bankClient;
 
+	/**
+	 * asks client to input the to and from account as well as he amount and transfers the money
+	 * @param bankClient
+	 */
 	public BankClientMoneyTransferTransaction(BankClient bankClient) {
 		
 		this.bankClient = bankClient;
@@ -18,12 +22,18 @@ public class BankClientMoneyTransferTransaction {
 
 		fromAccountNumber = Integer.parseInt(Read.read("from account number"));
 		toAccountNumber = Integer.parseInt(Read.read("to account number"));
-		amount = Integer.parseInt(Read.read("amount"));
+		amount = Double.parseDouble(Read.read("amount"));
 
 		transfer(fromAccountNumber, toAccountNumber, amount);
 	}
 	
-	public void transfer(int fromAccountNumber, int toAccountNumber, double amount) {
+	/**
+	 * handles the transfer of money between two accounts
+	 * @param fromAccountNumber
+	 * @param toAccountNumber
+	 * @param amount
+	 */
+	private void transfer(int fromAccountNumber, int toAccountNumber, double amount) {
 
 		int from = 0;//money coming from this account
 
@@ -57,8 +67,8 @@ public class BankClientMoneyTransferTransaction {
 		if (from >= 0 && from < bankClient.bankAccounts.size() && to >= 0 && to < bankClient.bankAccounts.size()
 				&& bankClient.bankAccounts.get(from).accountBalance >= amount) {
 
-			bankClient.bankAccounts.get(from).accountBalance-=amount;
-			bankClient.bankAccounts.get(to).accountBalance+=amount;
+			bankClient.bankAccounts.get(from).accountBalance-=amount;//remove from account
+			bankClient.bankAccounts.get(to).accountBalance+=amount;//add to account
 
 			System.out.println("\nTransfer is completed\n");
 		}

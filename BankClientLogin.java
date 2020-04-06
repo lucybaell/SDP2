@@ -13,12 +13,16 @@ public class BankClientLogin {
 
 	public boolean successfulLogin = false;
 	public int index = 0;
-	List<BankClient> bankClients;
+	private List<BankClient> bankClients;
 
 	public BankClientLogin(List<BankClient> bankClients) {
 		this.bankClients = bankClients;
 	}
 
+	/**
+	 * returns if login was successful
+	 * @return
+	 */
 	public boolean login() {
 
 		String username = Read.read("username");
@@ -48,10 +52,18 @@ public class BankClientLogin {
 
 	}
 
+	/**
+	 * returns index of bankClients that is logged in
+	 * @return
+	 */
 	public int getIndex() {
 		return this.index;
 	}
 
+	/**
+	 * returns if login was successful
+	 * @return
+	 */
 	public boolean successfulLogin() {
 		return this.successfulLogin;
 	}

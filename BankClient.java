@@ -3,16 +3,19 @@ package gradedGroupProject.nonPrincipledDesign.v1;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * holds the data for an individual BankClient
+ *
+ */
 public class BankClient extends Person {
 
 	public static final AtomicInteger clientCount = new AtomicInteger(0);
 
-	public int clientID;
-	public BankClientProfile bankClientProfile;
-	public BankClientCridentials bankClientCridentials;
-	public List<BankAccount> bankAccounts;
-	public List<Appointment> appointments;
+	public int clientID;//identifys a BankClient uniquely
+	public BankClientProfile bankClientProfile;//holds name, address and DOB
+	public BankClientCridentials bankClientCridentials;//holds username and password
+	public List<BankAccount> bankAccounts;//holds bank accounts and their states
+	public List<Appointment> appointments;//holds appointments bank client has scheduled
 
 	/**
 	 * a constructor for BankClient

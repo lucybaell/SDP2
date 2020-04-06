@@ -3,19 +3,8 @@ package gradedGroupProject.nonPrincipledDesign.v1;
 import java.util.ArrayList;
 
 /**
- * You need to apply the Singleton pattern for the list of bank clients that is
- * used in your program. In particular, you need to define a new class, whose
- * name is BankClientDictionarySingleton and has as attribute a list of bank
- * clients. This class applies the singleton pattern. In particular, the class
- * should allow the creation of a single object of itself and a single object of
- * the list of bank clients. Then, you should use the
- * BankClientDictionarySingleton class at all points of your program that access
- * a list of bank clients. The BankClientDictionarySingleton class should
- * further offer the functions with the following prototypes/signatures. These
- * functions should be used by the rest of the program at the points that
- * access/update elements of a list of bank clients:
- * 
- * @author danielmason
+ * 2.System Design
+ * Applies singleton rule, creates one list of BankClients and can only be instantiated once
  *
  */
 public class BankClientDictionarySingleton {

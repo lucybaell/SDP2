@@ -1,8 +1,11 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 
-
 import java.text.ParseException;
 
+/**
+ * UI for bank employee user to schedule appointments
+ *
+ */
 public class BankEmployeeUI {
 
 	public static void main(String[] args) throws ParseException {
@@ -20,12 +23,14 @@ public class BankEmployeeUI {
 		
 		BankEmployee bankEmployee = new BankEmployee("Peggy");
 		
+		//Candidate appointments
 		CandidateAppointment canAp = new CandidateAppointment(bankEmployee);
 		canAp.appointment(bankClient1, "20/12/2000");
 		canAp.appointment(bankClient2, "22/12/2000");
 		canAp.appointment(bankClient3, "24/12/2000");
 		canAp.appointment(bankClient4, "27/12/2000");
 		
+		//executes management of appointments
 		new BankEmployeeVerifyAppointmentsTransaction(bankEmployee);
 
 	}

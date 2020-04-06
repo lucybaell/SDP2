@@ -1,13 +1,23 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 
+/**
+ * bank client accounts listed and client asked for account number they want to
+ * delete
+ *
+ */
 public class BankClientDeleteBankAccountTransaction {
 
-	public BankClient bankClient;
-	
+	private BankClient bankClient;
+
+	/**
+	 * prints accounts and asked which one to delete
+	 * 
+	 * @param bankClient
+	 */
 	public BankClientDeleteBankAccountTransaction(BankClient bankClient) {
 
-		this.bankClient=bankClient;
-		
+		this.bankClient = bankClient;
+
 		bankClient.printAccounts();
 
 		int accountNumber = Integer.parseInt(Read.read("account number for deletion"));
@@ -16,7 +26,13 @@ public class BankClientDeleteBankAccountTransaction {
 
 	}
 
-	public void deleteAccount(int accountNumber) {
+	/**
+	 * takes an account number and if a bank clients account numbers match it, that
+	 * account will be deleted
+	 * 
+	 * @param accountNumber
+	 */
+	private void deleteAccount(int accountNumber) {
 
 		int pos = 0;
 
@@ -27,7 +43,7 @@ public class BankClientDeleteBankAccountTransaction {
 		if (pos >= 0 && pos < bankClient.bankAccounts.size()) {
 
 			bankClient.bankAccounts.remove(pos);
-			
+
 		}
 	}
 }

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * holds Bank Employee users name and appointments they have
+ *
+ */
 public class BankEmployee extends Person {
 
 	public String name;

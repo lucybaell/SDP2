@@ -1,5 +1,8 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
-
+/**
+ * for primary accounts
+ *
+ */
 public class BankAccountPrimary extends BankAccount{
 
 	public BankAccountPrimary () {

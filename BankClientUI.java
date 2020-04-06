@@ -2,11 +2,13 @@ package gradedGroupProject.nonPrincipledDesign.v1;
 
 import java.text.ParseException;
 
+/**
+ * UI used by the Bank Client to register, log in and manage their banking
+ *
+ */
 public class BankClientUI {
 
 	public static void main(String[] args) throws ParseException {
-
-		//List<BankClient> bankClients = new ArrayList<>();
 		
 		//part 2.2 system design (singleton pattern)
 		BankClientDictionarySingleton bankClientDictionarySingleton = BankClientDictionarySingleton.getSingletonInstance();
@@ -27,7 +29,6 @@ public class BankClientUI {
 
 				RegistrationTransaction registrationTransaction = new RegistrationTransactionImpl();
 				BankClient bankClient = registrationTransaction.register();
-				//bankClients.add(bankClient);
 				bankClientDictionarySingleton.addBankClient(bankClient);
 
 				while (true) {// while client not adding banks accounts
@@ -57,7 +58,7 @@ public class BankClientUI {
 					int index = bankClientLogin.getIndex();// this is t get the bank clients pos in the array
 					
 					BankClient bankClient = bankClientDictionarySingleton.getBankClient(index);// this deals with which bankclient has logged in
-					System.out.println("bank client has values: "+ bankClient.clientID);
+					
 					// appendix 23 24 not sure why he wants this but i put it in
 					int accountNumber = Integer.parseInt(Read.read("account number"));
 					bankClient.toPrintAccount(accountNumber);

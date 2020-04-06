@@ -5,14 +5,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * allows the bank client to book an appointment
+ *
+ */
 public class BankClientBookAppointmentTransaction {
 
-	private String employeeName = "Captain Cuddles";
+	private String employeeName = "Captain Cuddles";//employee appointment with
 	private BankClient bankClient;
 	
 	public BankClientBookAppointmentTransaction(BankClient bankClient) {
 		
 		this.bankClient = bankClient;
+		//ask for appointment date
 		Date appointmentDate = null;
 		try {
 			appointmentDate = new SimpleDateFormat("dd/MM/yyyy").parse(Read.read("apppoinment date"));
@@ -20,9 +25,11 @@ public class BankClientBookAppointmentTransaction {
 			ex.printStackTrace();
 		}
 
+		//ask for it to be scehduled
 		boolean scheduled = askForSchedulingAppointment(
 				bankClient.clientID, appointmentDate, employeeName);
 
+		//after its scheduled, book the appointment with employee
 		if (scheduled)
 			bookAppointment(appointmentDate, employeeName);
 
@@ -31,6 +38,14 @@ public class BankClientBookAppointmentTransaction {
 	}
 
 
+	/**
+	 * asks employee to schedule appointment
+	 * 
+	 * @param clientID
+	 * @param date
+	 * @param employeeName
+	 * @return
+	 */
 	public boolean askForSchedulingAppointment(int clientID, Date date, String employeeName) {
 
 		if (date == null || employeeName == null) {
@@ -48,6 +63,12 @@ public class BankClientBookAppointmentTransaction {
 		}
 	}
 
+	/**
+	 * books the appointment and adds it to BankClients appointment list
+	 * 
+	 * @param date
+	 * @param employeeName
+	 */
 	public void bookAppointment(Date date, String employeeName) {
 
 		if (date == null || employeeName == null)

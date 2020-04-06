@@ -5,14 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * holds an appointment data for a bank client
+ *
+ */
 public class Appointment {
 
-	public Date date;
-	public String bankEmployeesWithAppointment;
+	public Date date; //holds the date of the appointment
+	public String bankEmployeesWithAppointment; //holds the name of employee appointment is with
 
 	public Appointment(Date date, String bankEmployeesWithAppointment) {
 
-		while (!dateNotAfterTodayCheck(date)) {
+		while (!dateNotAfterTodayCheck(date)) { //3. cyber security - if date is after today
 			try {
 				date = new SimpleDateFormat("dd/MM/yyyy").parse(Read.read("apppoinment date"));
 			} catch (ParseException ex) {
@@ -25,6 +29,7 @@ public class Appointment {
 	}
 
 	/**
+	 * 3. Cyber Security
 	 * returns false if date is after today
 	 * 
 	 * @param dateOfAppointment
@@ -35,7 +40,7 @@ public class Appointment {
 		Date today = Calendar.getInstance().getTime();
 
 		if (dateOfAppointment.compareTo(today) > 0) {
-			System.out.println("Date cannot be after today");
+			System.err.println("Appointment Date cannot be after today\n");
 			return false;
 		}
 		return true;

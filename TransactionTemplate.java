@@ -5,10 +5,8 @@ package gradedGroupProject.nonPrincipledDesign.v1;
  * transaction as an abstract function and a concrete transaction method calls
  * them step by step
  * 
- * @author danielmason
- *
  */
-abstract public class TransactionTemplate {
+ public abstract class TransactionTemplate {
 
 	public void transaction() {
 		provideDetails();
@@ -19,7 +17,7 @@ abstract public class TransactionTemplate {
 
 	abstract void provideDetails();
 
-	abstract void checkTransaction();
+	abstract boolean checkTransaction();
 
 	abstract void printErrorMessage();
 
