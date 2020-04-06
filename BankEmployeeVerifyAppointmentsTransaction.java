@@ -1,13 +1,13 @@
 package gradedGroupProject.nonPrincipledDesign.v1;
 
-import java.util.Date;
-import java.util.List;
 
+/**
+ * class allowing scheduling of bank employees appointments
+ *
+ */
 public class BankEmployeeVerifyAppointmentsTransaction {
 
 	public BankEmployee bankEmployee;
-	List<BankClient> bankClientsWithAppointments;
-	List<Date> appointmentDates;
 	
 
 	public BankEmployeeVerifyAppointmentsTransaction(BankEmployee bankEmployee) {
@@ -16,11 +16,15 @@ public class BankEmployeeVerifyAppointmentsTransaction {
 		
 	}
 
+	/**
+	 * uses BankEmployeeVerifyAppointment to manage scheduling of appointments
+	 * 
+	 */
 	public void handleAppointments() {
 		
-		ListPrint.print(bankEmployee, bankEmployee.bankClientsWithAppointments);
-		BankEmployeeVerifyAppointment verifyAppointments = new BankEmployeeVerifyAppointment();
-		verifyAppointments.verifyAppointments(bankEmployee);
+		ListPrint.print(bankEmployee, bankEmployee.bankClientsWithAppointments);//prints appointment
+		BankEmployeeVerifyAppointment verifyAppointments = new BankEmployeeVerifyAppointment();//asks user to verify or not
+		verifyAppointments.verifyAppointments(bankEmployee);//Schedules or doesn't
 		
 	}
 

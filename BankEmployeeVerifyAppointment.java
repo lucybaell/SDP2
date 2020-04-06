@@ -3,10 +3,18 @@ package gradedGroupProject.nonPrincipledDesign.v1;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * classes with methods to schedule appointments
+ *
+ */
 public class BankEmployeeVerifyAppointment {
 
 	private BankClient bankClient;
 
+	/**
+	 * verify appointment
+	 * @param bankEmployee
+	 */
 	public void verifyAppointments(BankEmployee bankEmployee) {
 		for (int i = 0; i < bankEmployee.bankClientsWithAppointments.size(); ++i) {
 
@@ -35,6 +43,11 @@ public class BankEmployeeVerifyAppointment {
 		}
 	}
 	
+	/**
+	 * book it
+	 * @param date
+	 * @param employeeName
+	 */
 	public void bookAppointment(Date date, String employeeName) {
 
 		if (date == null || employeeName == null)

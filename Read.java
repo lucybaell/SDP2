@@ -4,8 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * asks the user for input
+ *
+ */
 public class Read {
 
+	/**
+	 * takes the string of what data required and asks user for input, returns as string
+	 * @param label
+	 * @return
+	 */
 	public static String read( String label ) {
 
 		System.out.println( "\nProvide your " + label + ":" );

@@ -3,7 +3,7 @@ package gradedGroupProject.nonPrincipledDesign.v1;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-/*
+/**
  * This class allows the creation of candidate appointments for BankEmployee to verify
  */
 
@@ -15,6 +15,10 @@ public class CandidateAppointment {
 		this.bankEmployee=bankEmployee;
 	}
 	
+	/**
+	 * schedules appointment
+	 * 
+	 */
 	public void appointment(BankClient bankClient, String date) throws ParseException {
 		
 		bankEmployee.bankClientsWithAppointments.add(bankClient);

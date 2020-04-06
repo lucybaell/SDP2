@@ -4,16 +4,27 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 2. System Design
+ * Applies template pattern, it creates a profile for the bank client during registration
+ *
+ */
 public class CreateProfileTransaction extends TransactionTemplate {
 
+	//data required for profile
 	private String name;
 	private String address;
 	private Date birthDate;
+	//new profile for bank client
 	private BankClientProfile bankClientProfile;
 
+	/**
+	 * carries out profile creation for bank client in parameter
+	 * @param bankClient
+	 */
 	public void createProfile(BankClient bankClient) {
 	
-		transaction();
+		transaction();//2. template pattern
 		bankClient.bankClientProfile = this.bankClientProfile;
 		
 	}
